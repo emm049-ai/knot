@@ -11,6 +11,9 @@ workflows:
       - name: Get dependencies
         script: |
           flutter pub get
+      - name: Create iOS project structure
+        script: |
+          flutter create --platforms=ios .
       - name: Build iOS
         script: |
           flutter build ipa --release
