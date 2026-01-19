@@ -25,7 +25,6 @@ workflows:
           failure: true
       firebase:
         firebase_service_account: $FIREBASE_SERVICE_ACCOUNT
-        release_notes: "Automated build from Codemagic"
         ios:
           app_id: $IOS_APP_ID
           groups:
