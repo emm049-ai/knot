@@ -8,32 +8,44 @@ workflows:
       xcode: latest
       cocoapods: default
     scripts:
-      - name: Get dependencies
-        script: |
-          flutter pub get
       - name: Create iOS project structure
         script: |
           echo "Checking iOS project structure..."
-          if [ ! -d "ios/Runner.xcodeproj" ]; then
-            echo "iOS project not found, creating..."
-            # Remove ios folder if it exists but is incomplete
-            if [ -d "ios" ]; then
-              echo "Removing incomplete ios folder..."
-              rm -rf ios
-            fi
-            # Create iOS project with correct org and name
-            flutter create --platforms=ios --org com.emanneul --project-name knot .
-            echo "iOS project created"
-          else
-            echo "iOS project already exists"
+          ls -la ios/ || echo "ios folder does not exist"
+          
+          # Always recreate iOS project to ensure it's complete
+          echo "Recreating iOS project structure..."
+          if [ -d "ios" ]; then
+            echo "Backing up existing ios files..."
+            mkdir -p /tmp/ios_backup
+            cp ios/Runner/GoogleService-Info.plist /tmp/ios_backup/ 2>/dev/null || echo "No GoogleService-Info.plist to backup"
+            cp ios/Runner/Info.plist /tmp/ios_backup/ 2>/dev/null || echo "No Info.plist to backup"
+            echo "Removing incomplete ios folder..."
+            rm -rf ios
           fi
+          
+          # Create iOS project with correct org and name
+          echo "Creating iOS project..."
+          flutter create --platforms=ios --org com.emanneul --project-name knot .
+          
+          # Restore important files
+          if [ -f "/tmp/ios_backup/GoogleService-Info.plist" ]; then
+            echo "Restoring GoogleService-Info.plist..."
+            cp /tmp/ios_backup/GoogleService-Info.plist ios/Runner/
+          fi
+          
           # Verify xcodeproj exists
           if [ ! -d "ios/Runner.xcodeproj" ]; then
-            echo "ERROR: xcodeproj still not found after creation!"
+            echo "ERROR: xcodeproj not found after creation!"
+            echo "Contents of ios folder:"
             ls -la ios/
             exit 1
           fi
-          echo "iOS project structure verified"
+          echo "✅ iOS project structure verified"
+          ls -la ios/Runner.xcodeproj
+      - name: Get dependencies
+        script: |
+          flutter pub get
       - name: Install CocoaPods dependencies
         script: |
           cd ios
