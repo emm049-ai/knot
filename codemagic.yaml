@@ -13,7 +13,24 @@ workflows:
           flutter pub get
       - name: Create iOS project structure
         script: |
-          flutter create --platforms=ios .
+          if [ ! -d "ios/Runner.xcodeproj" ]; then
+            echo "iOS project not found, creating..."
+            flutter create --platforms=ios --org com.emanneul --project-name knot .
+          else
+            echo "iOS project already exists"
+          fi
+          # Ensure Podfile exists
+          if [ ! -f "ios/Podfile" ]; then
+            echo "Creating Podfile..."
+            cd ios
+            pod init
+            cd ..
+          fi
+      - name: Install CocoaPods dependencies
+        script: |
+          cd ios
+          pod install
+          cd ..
       - name: Build iOS
         script: |
           flutter build ipa --release
