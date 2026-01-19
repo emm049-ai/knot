@@ -1,0 +1,57 @@
+[
+  {
+    "id": "finance_male_1",
+    "assetPath": "assets/avatars/finance_male_1.png",
+    "description": "Male finance professional in suit with tie",
+    "jobKeywords": ["finance", "accountant", "banker", "financial", "investment", "analyst"],
+    "gender": "male",
+    "ageRange": "adult",
+    "ethnicity": ["white", "asian"],
+    "outfit": "formal",
+    "accessory": null
+  },
+  {
+    "id": "construction_male_1",
+    "assetPath": "assets/avatars/construction_male_1.png",
+    "description": "Male construction worker with hard hat",
+    "jobKeywords": ["construction", "contractor", "builder", "foreman", "engineer"],
+    "gender": "male",
+    "ageRange": "adult",
+    "ethnicity": null,
+    "outfit": "uniform",
+    "accessory": "hard hat"
+  },
+  {
+    "id": "recruiter_female_1",
+    "assetPath": "assets/avatars/recruiter_female_1.png",
+    "description": "Female recruiter with clipboard",
+    "jobKeywords": ["recruiter", "talent", "hr", "human resources", "hiring"],
+    "gender": "female",
+    "ageRange": "adult",
+    "ethnicity": null,
+    "outfit": "business",
+    "accessory": "clipboard"
+  },
+  {
+    "id": "professor_male_1",
+    "assetPath": "assets/avatars/professor_male_1.png",
+    "description": "Male professor with glasses",
+    "jobKeywords": ["professor", "teacher", "lecturer", "educator", "academic"],
+    "gender": "male",
+    "ageRange": "adult",
+    "ethnicity": null,
+    "outfit": "casual",
+    "accessory": "glasses"
+  },
+  {
+    "id": "healthcare_female_1",
+    "assetPath": "assets/avatars/healthcare_female_1.png",
+    "description": "Female healthcare worker in lab coat",
+    "jobKeywords": ["doctor", "nurse", "medical", "healthcare", "physician", "surgeon"],
+    "gender": "female",
+    "ageRange": "adult",
+    "ethnicity": null,
+    "outfit": "uniform",
+    "accessory": "clipboard"
+  }
+]
